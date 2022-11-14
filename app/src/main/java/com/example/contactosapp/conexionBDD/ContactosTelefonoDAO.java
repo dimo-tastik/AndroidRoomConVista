@@ -28,6 +28,6 @@ public interface ContactosTelefonoDAO {
     @Query("SELECT * FROM tabla_contacto ORDER BY nombre asc")
     LiveData<List<EntidadContacto>> getContactos();
 
-    @Query("SELECT * FROM tabla_contacto")
+    @Query("SELECT * FROM tabla_telefono")
     LiveData<List<EntidadTelefono>> getTelefonos();
 }

@@ -5,11 +5,15 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
+import com.example.contactosapp.miCasaTelefono.Converters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {EntidadContacto.class, EntidadTelefono.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class BaseDatosContactos extends RoomDatabase {
 
     private static final String DB_NOMBRE = "contactos_db";
