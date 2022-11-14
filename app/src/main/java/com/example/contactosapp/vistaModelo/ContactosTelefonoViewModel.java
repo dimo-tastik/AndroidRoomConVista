@@ -26,8 +26,8 @@ public class ContactosTelefonoViewModel  extends AndroidViewModel {
         AllTelefonos = Repositorio.getAllTelefonos();
     }
 
-    LiveData<List<EntidadContacto>> getAllContactos() { return AllContactos; }
-    LiveData<List<EntidadTelefono>> getAllTelefonos() { return AllTelefonos; }
+    public LiveData<List<EntidadContacto>> getAllContactos() { return AllContactos; }
+    public LiveData<List<EntidadTelefono>> getAllTelefonos() { return AllTelefonos; }
 
 
     public void insert(EntidadContacto contacto) { Repositorio.insertarContacto(contacto); }

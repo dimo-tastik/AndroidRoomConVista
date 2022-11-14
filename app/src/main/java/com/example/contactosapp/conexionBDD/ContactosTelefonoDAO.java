@@ -30,4 +30,5 @@ public interface ContactosTelefonoDAO {
 
     @Query("SELECT * FROM tabla_telefono")
     LiveData<List<EntidadTelefono>> getTelefonos();
+
 }

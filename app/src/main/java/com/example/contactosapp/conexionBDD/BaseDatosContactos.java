@@ -2,10 +2,12 @@ package com.example.contactosapp.conexionBDD;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.contactosapp.miCasaTelefono.Converters;
 
@@ -33,12 +35,30 @@ public abstract class BaseDatosContactos extends RoomDatabase {
             synchronized (BaseDatosContactos.class) {
                 if (INSTANCIA == null) {
                     INSTANCIA = Room.databaseBuilder(context.getApplicationContext(),
-                                    BaseDatosContactos.class, DB_NOMBRE)
-                            .build();
+                                    BaseDatosContactos.class, DB_NOMBRE).addCallback(sRoomDatabaseCallback).build();
                 }
             }
         }
         return INSTANCIA;
     }
+
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+
+            baseDatosEscritor.execute(() -> {
+
+                ContactosTelefonoDAO dao = INSTANCIA.contactoDAO();
+
+                EntidadContacto contacto = new EntidadContacto("Yo","dtomassob@gmail.com","Av. de las Ciudades");
+                dao.insertarContacto(contacto);
+                contacto = new EntidadContacto("Aa Mamá","email@gmail.com","C/ dirección");
+                dao.insertarContacto(contacto);
+
+            });
+        }
+    };
 
 }
