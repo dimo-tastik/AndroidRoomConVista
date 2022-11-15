@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView listaContactos;
     ContactosTelefonoViewModel contactosViewModel;
+    ContactosListAdapter adapter;
     public static final int REQUEST_CODE_NUEVO_CONTACTO = 1;
 
     @Override
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listaContactos = findViewById(R.id.listaContactos);
-        final ContactosListAdapter adapter = new ContactosListAdapter(new ContactosListAdapter.ContactoDiff());
+        adapter = new ContactosListAdapter(new ContactosListAdapter.ContactoDiff());
         listaContactos.setAdapter(adapter);
         listaContactos.setLayoutManager(new LinearLayoutManager(this));
         listaContactos.addOnItemTouchListener(new RecyclerItemClickListener(this, listaContactos, new RecyclerItemClickListener.OnItemClickListener() {
@@ -83,10 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void itemSelecionadoLongClick(View v, int posicion) {
-        createSimpleDialog().show();
-    }
-
-    public AlertDialog createSimpleDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setMessage("¿Eliminar?")
@@ -94,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                EntidadContacto contactoAEliminar = adapter.getCurrentList().get(posicion);
+                                contactosViewModel.eliminar(contactoAEliminar.getIdContacto());
                             }
                         })
                 .setNegativeButton("NO",
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-        return builder.create();
+        builder.create().show();
     }
 
     public void itemSelecionado(View v, int posicion){

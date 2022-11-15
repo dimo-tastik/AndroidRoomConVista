@@ -33,4 +33,6 @@ public class ContactosTelefonoViewModel  extends AndroidViewModel {
     public void insert(EntidadContacto contacto) { Repositorio.insertarContacto(contacto); }
     public void insert(EntidadTelefono telefono) { Repositorio.insertarTelefono(telefono); }
 
+    public void eliminar(int idContacto){Repositorio.eliminarContacto(idContacto);}
+
 }
