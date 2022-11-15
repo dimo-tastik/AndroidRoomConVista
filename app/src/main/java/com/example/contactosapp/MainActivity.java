@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ContactosTelefonoViewModel contactosViewModel;
     ContactosListAdapter adapter;
     public static final int REQUEST_CODE_NUEVO_CONTACTO = 1;
+    public static final int REQUEST_CODE_EDITAR_CONTACTO = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
         }else if(requestCode == REQUEST_CODE_NUEVO_CONTACTO && resultCode == DEFAULT_KEYS_DIALER){
             Toast.makeText(getApplicationContext(), "Error, faltan datos.", Toast.LENGTH_LONG).show();
         }
+
+        if (requestCode == REQUEST_CODE_EDITAR_CONTACTO && resultCode == RESULT_OK) {
+            EntidadContacto  contactoEditado = adapter.getCurrentList().get(data.getIntExtra("posicion",0));
+            contactoEditado.setNombre(data.getStringExtra("nombre"));
+            contactoEditado.setDireccion(data.getStringExtra("direccion"));
+            contactoEditado.setEmail(data.getStringExtra("email"));
+                    //pillar telefono
+            contactosViewModel.update(contactoEditado);
+        }else if(requestCode == REQUEST_CODE_EDITAR_CONTACTO && resultCode == DEFAULT_KEYS_DIALER){
+            Toast.makeText(getApplicationContext(), "Error, faltan datos.", Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -91,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                EntidadContacto contactoAEliminar = adapter.getCurrentList().get(posicion);
-                                contactosViewModel.eliminar(contactoAEliminar.getIdContacto());
+                                EntidadContacto contactoParaEliminar = adapter.getCurrentList().get(posicion);
+                                contactosViewModel.eliminar(contactoParaEliminar.getIdContacto());
                             }
                         })
                 .setNegativeButton("NO",
@@ -107,6 +119,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void itemSelecionado(View v, int posicion){
-        Toast.makeText(v.getContext(),"itemclick " + posicion,Toast.LENGTH_SHORT).show();
+        EntidadContacto contactoSeleccionado = adapter.getCurrentList().get(posicion);
+        lanzarEditarContacto(posicion, contactoSeleccionado);
+    }
+
+    private void lanzarEditarContacto(int posicion, EntidadContacto entidadContacto) {
+        Intent intent = new Intent(MainActivity.this, Detalles.class);
+        intent.putExtra("nombre", entidadContacto.getNombre());
+        intent.putExtra("direccion",entidadContacto.getDireccion());
+        intent.putExtra("email",entidadContacto.getEmail());
+        intent.putExtra("posicion", posicion);
+        startActivityForResult(intent, REQUEST_CODE_EDITAR_CONTACTO);
     }
 }

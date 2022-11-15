@@ -31,7 +31,6 @@ public class NuevoContacto extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailContacto);
 
         botonGuardar = (ImageButton) findViewById(R.id.botonGuardar);
-
         botonGuardar.setOnClickListener(view -> {guardarContacto();});
 
         botonCerrar = (ImageButton) findViewById(R.id.botonCerrar);

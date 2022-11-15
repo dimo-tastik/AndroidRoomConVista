@@ -14,7 +14,7 @@
         tools:srcCompat="@drawable/contacto" />
 
     <TextView
-        android:id="@+id/textViewNombreContacto"
+        android:id="@+id/editTextNombreContacto"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"

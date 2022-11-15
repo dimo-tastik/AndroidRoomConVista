@@ -35,4 +35,8 @@ public class ContactosTelefonoViewModel  extends AndroidViewModel {
 
     public void eliminar(int idContacto){Repositorio.eliminarContacto(idContacto);}
 
+    public void update(EntidadContacto contacto){
+        Repositorio.update(contacto);
+    }
+
 }

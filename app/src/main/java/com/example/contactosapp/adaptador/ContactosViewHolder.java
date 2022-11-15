@@ -16,7 +16,7 @@ public class ContactosViewHolder extends RecyclerView.ViewHolder{
 
     public ContactosViewHolder(View itemView) {
         super(itemView);
-        contactoItemView = itemView.findViewById(R.id.textViewNombreContacto);
+        contactoItemView = itemView.findViewById(R.id.editTextNombreContacto);
         imageView = itemView.findViewById(R.id.imageViewContacto);
 
     }

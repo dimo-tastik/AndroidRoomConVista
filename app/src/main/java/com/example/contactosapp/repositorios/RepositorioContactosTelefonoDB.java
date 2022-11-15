@@ -47,4 +47,10 @@ public class RepositorioContactosTelefonoDB {
             contactosTelefonoDAO.eliminarContacto(idContacto);
         });
     }
+
+    public void update(EntidadContacto contacto) {
+        BaseDatosContactos.baseDatosEscritor.execute(() -> {
+            contactosTelefonoDAO.actualizarContacto(contacto);
+        });
+    }
 }
