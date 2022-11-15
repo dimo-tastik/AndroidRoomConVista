@@ -18,7 +18,7 @@
         android:clickable="true"
         android:contentDescription="detalles"
         android:focusable="true"
-        app:backgroundTint="#FFEB3B"
+        app:backgroundTint="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
