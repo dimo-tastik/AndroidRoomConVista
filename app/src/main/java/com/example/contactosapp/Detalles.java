@@ -8,10 +8,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aplicaciondecontactos.R;
+import com.example.contactosapp.adaptador.TelefonoListAdapter;
+import com.example.contactosapp.vistaModelo.ContactosTelefonoViewModel;
 
 public class Detalles extends AppCompatActivity {
+
+    RecyclerView listaTelefonos;
+    ContactosTelefonoViewModel telefonoViewModel;
+    TelefonoListAdapter adapter;
 
     private EditText editTextNombre;
     private EditText editTextDireccion;
@@ -30,6 +39,16 @@ public class Detalles extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles);
+
+        listaTelefonos = findViewById(R.id.recyclerViewTelefonos);
+        adapter = new TelefonoListAdapter(new TelefonoListAdapter.TelefonoDiff());
+        listaTelefonos.setAdapter(adapter);
+        listaTelefonos.setLayoutManager(new LinearLayoutManager(this));
+
+        telefonoViewModel = new ViewModelProvider(this).get(ContactosTelefonoViewModel.class);
+        telefonoViewModel.getAllTelefonos().observe(this, tlf -> {
+            adapter.submitList(tlf);
+        });
 
         editTextNombre = (EditText) findViewById(R.id.editTextNombreContacto);
         //tlf

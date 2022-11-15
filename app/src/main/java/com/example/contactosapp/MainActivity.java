@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         contactosViewModel = new ViewModelProvider(this).get(ContactosTelefonoViewModel.class);
-        contactosViewModel.getAllContactos().observe(this, animals -> {
-            adapter.submitList(animals);
+        contactosViewModel.getAllContactos().observe(this, contactos -> {
+            adapter.submitList(contactos);
         });
 
         FloatingActionButton botonNuevoContacto = findViewById(R.id.botonNuevoContacto);

@@ -36,10 +36,11 @@ public class Telefono implements Serializable {
     }
 
     public void setNumeroTelefono(String numeroTelefono) {
-        if (numeroTelefono.length() > 9) {
+        if (numeroTelefono.length() > 15) {
             throw new NumeroTelefonoException(numeroTelefono);
+        }else{
+            this.numeroTelefono = numeroTelefono;
         }
-        this.numeroTelefono = numeroTelefono.substring(0,3) + "-" + numeroTelefono.substring(3,5) + "-" + numeroTelefono.substring(5,7) + "-" + numeroTelefono.substring(7,9);
     }
 
     @Override

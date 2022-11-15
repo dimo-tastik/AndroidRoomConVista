@@ -10,6 +10,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.contactosapp.miCasaTelefono.Converters;
+import com.example.contactosapp.miCasaTelefono.Telefono;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,9 +54,13 @@ public abstract class BaseDatosContactos extends RoomDatabase {
                 ContactosTelefonoDAO dao = INSTANCIA.contactoDAO();
 
                 EntidadContacto contacto = new EntidadContacto("Yo","dtomassob@gmail.com","Av. de las Ciudades");
+                EntidadTelefono telefono = new EntidadTelefono(new Telefono("34", "608456638"),contacto.getIdContacto());
                 dao.insertarContacto(contacto);
+                dao.insertarTelefono(telefono);
                 contacto = new EntidadContacto("Aa Mamá","email@gmail.com","C/ dirección");
+                telefono = new EntidadTelefono(new Telefono("686204988"),contacto.getIdContacto());
                 dao.insertarContacto(contacto);
+                dao.insertarTelefono(telefono);
 
             });
         }

@@ -19,6 +19,9 @@ public interface ContactosTelefonoDAO {
     @Query("DELETE from tabla_contacto WHERE idContacto = :idContacto")
     void eliminarContacto(int idContacto);
 
+    @Query("DELETE from tabla_telefono WHERE idContacto = :idContacto")
+    void eliminarTelefonosContacto(int idContacto);
+
     @Update
     void actualizarContacto(EntidadContacto entidadContactos);
 
@@ -30,5 +33,8 @@ public interface ContactosTelefonoDAO {
 
     @Query("SELECT * FROM tabla_telefono")
     LiveData<List<EntidadTelefono>> getTelefonos();
+
+    @Query("SELECT * FROM tabla_telefono WHERE idContacto = :idContacto")
+    LiveData<List<EntidadTelefono>> getTelefonos(int idContacto);
 
 }

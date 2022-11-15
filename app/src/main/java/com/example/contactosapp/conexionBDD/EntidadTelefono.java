@@ -9,12 +9,12 @@ import androidx.room.PrimaryKey;
 import com.example.contactosapp.miCasaTelefono.Telefono;
 
 
-@Entity(tableName = "tabla_telefono",
+@Entity(tableName = "tabla_telefono"/*,
         foreignKeys = {@ForeignKey(entity = EntidadContacto.class,
                 parentColumns = "idContacto",
                 childColumns = "idContacto",
                 onDelete = ForeignKey.CASCADE)
-        })
+        }*/)
 public class EntidadTelefono {
 
     @NonNull
@@ -25,8 +25,9 @@ public class EntidadTelefono {
     @ColumnInfo(name = "telefono")
     private Telefono telefono;
 
-    public EntidadTelefono(@NonNull Telefono telefono) {
+    public EntidadTelefono(@NonNull Telefono telefono, int idContacto) {
         this.telefono = telefono;
+        this.idContacto = idContacto;
     }
 
     public int getIdContacto() {
