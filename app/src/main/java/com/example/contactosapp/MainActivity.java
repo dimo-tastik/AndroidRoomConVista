@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,12 @@ import com.example.aplicaciondecontactos.R;
 import com.example.contactosapp.adaptador.ContactosListAdapter;
 import com.example.contactosapp.adaptador.RecyclerItemClickListener;
 import com.example.contactosapp.conexionBDD.EntidadContacto;
+import com.example.contactosapp.conexionBDD.EntidadTelefono;
+import com.example.contactosapp.miCasaTelefono.Telefono;
 import com.example.contactosapp.vistaModelo.ContactosTelefonoViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,21 +79,24 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra("nombre"),
                     data.getStringExtra("email"),
                     data.getStringExtra("direccion")
-                    //pillar telefono
             );
             contactosViewModel.insert(nuevoContacto);
-            //insertar telefono
+            contactosViewModel.insert(new EntidadTelefono(new Telefono(data.getStringExtra("telefono")),nuevoContacto.getIdContacto()));
         }else if(requestCode == REQUEST_CODE_NUEVO_CONTACTO && resultCode == DEFAULT_KEYS_DIALER){
             Toast.makeText(getApplicationContext(), "Error, faltan datos.", Toast.LENGTH_LONG).show();
         }
 
         if (requestCode == REQUEST_CODE_EDITAR_CONTACTO && resultCode == RESULT_OK) {
-            EntidadContacto  contactoEditado = adapter.getCurrentList().get(data.getIntExtra("posicion",0));
-            contactoEditado.setNombre(data.getStringExtra("nombre"));
-            contactoEditado.setDireccion(data.getStringExtra("direccion"));
-            contactoEditado.setEmail(data.getStringExtra("email"));
+            List<EntidadContacto> listaContactos = adapter.getCurrentList();
+            for (EntidadContacto contacto : listaContactos) {
+                if (contacto.getIdContacto() == data.getIntExtra("idContacto", 0)){
+                    contacto.setNombre(data.getStringExtra("nombre"));
+                    contacto.setDireccion(data.getStringExtra("direccion"));
+                    contacto.setEmail(data.getStringExtra("email"));
+                    contactosViewModel.update(contacto);
                     //pillar telefono
-            contactosViewModel.update(contactoEditado);
+                }
+            }
         }else if(requestCode == REQUEST_CODE_EDITAR_CONTACTO && resultCode == DEFAULT_KEYS_DIALER){
             Toast.makeText(getApplicationContext(), "Error, faltan datos.", Toast.LENGTH_LONG).show();
         }
@@ -105,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 EntidadContacto contactoParaEliminar = adapter.getCurrentList().get(posicion);
                                 contactosViewModel.eliminar(contactoParaEliminar.getIdContacto());
+                                contactosViewModel.eliminarTelefonosContacto(contactoParaEliminar.getIdContacto());
                             }
                         })
                 .setNegativeButton("NO",
@@ -120,15 +129,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void itemSelecionado(View v, int posicion){
         EntidadContacto contactoSeleccionado = adapter.getCurrentList().get(posicion);
-        lanzarEditarContacto(posicion, contactoSeleccionado);
+        lanzarEditarContacto(contactoSeleccionado);
     }
 
-    private void lanzarEditarContacto(int posicion, EntidadContacto entidadContacto) {
+    private void lanzarEditarContacto(EntidadContacto entidadContacto) {
         Intent intent = new Intent(MainActivity.this, Detalles.class);
         intent.putExtra("nombre", entidadContacto.getNombre());
         intent.putExtra("direccion",entidadContacto.getDireccion());
         intent.putExtra("email",entidadContacto.getEmail());
-        intent.putExtra("posicion", posicion);
+        intent.putExtra("idContacto", entidadContacto.getIdContacto());
         startActivityForResult(intent, REQUEST_CODE_EDITAR_CONTACTO);
     }
 }

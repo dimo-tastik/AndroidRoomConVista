@@ -54,12 +54,18 @@ public abstract class BaseDatosContactos extends RoomDatabase {
                 ContactosTelefonoDAO dao = INSTANCIA.contactoDAO();
 
                 EntidadContacto contacto = new EntidadContacto("Yo","dtomassob@gmail.com","Av. de las Ciudades");
-                EntidadTelefono telefono = new EntidadTelefono(new Telefono("34", "608456638"),contacto.getIdContacto());
-                dao.insertarContacto(contacto);
+                long id = dao.insertarContacto(contacto);
+                EntidadTelefono telefono = new EntidadTelefono(new Telefono("608456638"), (int) id);
                 dao.insertarTelefono(telefono);
+
                 contacto = new EntidadContacto("Aa Mamá","email@gmail.com","C/ dirección");
-                telefono = new EntidadTelefono(new Telefono("686204988"),contacto.getIdContacto());
-                dao.insertarContacto(contacto);
+                id = dao.insertarContacto(contacto);
+                telefono = new EntidadTelefono(new Telefono("686204988"), (int) id);
+                dao.insertarTelefono(telefono);
+
+                contacto = new EntidadContacto("Dwayne Johnson","dwayneJohnson@gmail.com","C/ la piedra");
+                id = dao.insertarContacto(contacto);
+                telefono = new EntidadTelefono(new Telefono("3106202187"),(int) id);
                 dao.insertarTelefono(telefono);
 
             });

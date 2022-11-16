@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aplicaciondecontactos.R;
 
 public class TelefonoViewHolder extends RecyclerView.ViewHolder {
-     final TextView nombreItemView;
+    final TextView nombreItemView;
 
     public TelefonoViewHolder(View itemView) {
         super(itemView);

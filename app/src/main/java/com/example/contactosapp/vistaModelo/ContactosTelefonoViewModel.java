@@ -34,9 +34,14 @@ public class ContactosTelefonoViewModel  extends AndroidViewModel {
     public void insert(EntidadTelefono telefono) { Repositorio.insertarTelefono(telefono); }
 
     public void eliminar(int idContacto){Repositorio.eliminarContacto(idContacto);}
+    public void eliminarTelefonosContacto(int idContacto){Repositorio.eliminarTelefonosContacto(idContacto);}
+
 
     public void update(EntidadContacto contacto){
         Repositorio.update(contacto);
     }
 
+    public LiveData<List<EntidadTelefono>> getTelefonosContacto(int i) {
+        return Repositorio.getTelefonosContacto(i);
+    }
 }

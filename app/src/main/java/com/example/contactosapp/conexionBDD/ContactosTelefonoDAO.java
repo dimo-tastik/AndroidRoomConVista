@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface ContactosTelefonoDAO {
     @Insert
-    void insertarContacto(EntidadContacto entidadContactos);
+    long insertarContacto(EntidadContacto entidadContactos);
 
     @Insert
     void insertarTelefono(EntidadTelefono entidadTelefono);
@@ -32,9 +32,9 @@ public interface ContactosTelefonoDAO {
     LiveData<List<EntidadContacto>> getContactos();
 
     @Query("SELECT * FROM tabla_telefono")
-    LiveData<List<EntidadTelefono>> getTelefonos();
+    LiveData<List<EntidadTelefono>> getTelefonosContacto();
 
     @Query("SELECT * FROM tabla_telefono WHERE idContacto = :idContacto")
-    LiveData<List<EntidadTelefono>> getTelefonos(int idContacto);
+    LiveData<List<EntidadTelefono>> getTelefonosContacto(int idContacto);
 
 }

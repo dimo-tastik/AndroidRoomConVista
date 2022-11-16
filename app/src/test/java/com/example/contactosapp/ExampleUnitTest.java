@@ -16,17 +16,4 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-    @Test
-    public void telefonoToStringIsCorrect(){
-        Telefono tlf = new Telefono("34","608456638");
-        assertEquals("Telefono{" +
-                "prefijoTelefonico='" + "+34" + '\'' +
-                ", numeroTelefono='" + "608-45-66-38" + '\'' +
-                '}',tlf.toString());
-    }
-    @Test
-    public void telefonoComprobarNumero(){
-        Telefono tlf = new Telefono("34","686204988");
-        assertEquals("686-20-49-88",tlf.getNumeroTelefono());
-    }
 }

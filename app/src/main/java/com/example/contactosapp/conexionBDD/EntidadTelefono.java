@@ -27,7 +27,7 @@ public class EntidadTelefono {
 
     public EntidadTelefono(@NonNull Telefono telefono, int idContacto) {
         this.telefono = telefono;
-        this.idContacto = idContacto;
+        setIdContacto(idContacto);
     }
 
     public int getIdContacto() {

@@ -21,7 +21,7 @@ public class RepositorioContactosTelefonoDB {
         BaseDatosContactos db = BaseDatosContactos.getDatabase(application);
         contactosTelefonoDAO = db.contactoDAO();
         AllContactos = contactosTelefonoDAO.getContactos();
-        AllTelefonos = contactosTelefonoDAO.getTelefonos();
+        AllTelefonos = contactosTelefonoDAO.getTelefonosContacto();
     }
 
     public LiveData<List<EntidadContacto>> getAllContactos() {
@@ -48,9 +48,19 @@ public class RepositorioContactosTelefonoDB {
         });
     }
 
+    public void eliminarTelefonosContacto(int idContacto){
+        BaseDatosContactos.baseDatosEscritor.execute(() -> {
+            contactosTelefonoDAO.eliminarTelefonosContacto(idContacto);
+        });
+    }
+
     public void update(EntidadContacto contacto) {
         BaseDatosContactos.baseDatosEscritor.execute(() -> {
             contactosTelefonoDAO.actualizarContacto(contacto);
         });
+    }
+
+    public LiveData<List<EntidadTelefono>> getTelefonosContacto(int i) {
+        return contactosTelefonoDAO.getTelefonosContacto(i);
     }
 }

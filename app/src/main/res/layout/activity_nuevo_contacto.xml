@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="com.example.contactosapp.NuevoContacto">
 
     <TextView
         android:id="@+id/textViewNuevoContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/nuevo_contacto"
+        android:layout_marginTop="15dp"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextNombreContacto"
+        android:id="@+id/editTextNombreContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="108dp"
         android:ems="10"
         android:hint="Nombre"
         android:importantForAutofill="no"
@@ -32,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNuevoContacto" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -40,7 +39,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="107dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextNombreContacto"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNombreContacto"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +51,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextNumeroTlf"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumeroTlf"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
@@ -67,42 +66,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNumeroTlf" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumeroTlf" />
 
     <EditText
-        android:id="@+id/editTextTextDireccionContacto"
+        android:id="@+id/editTextDireccionContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="Dirección"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMasInfo" />
 
     <EditText
-        android:id="@+id/editTextTextEmailContacto"
+        android:id="@+id/editTextEmailContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="e-mail"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextDireccionContacto" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDireccionContacto" />
 
     <ImageButton
         android:id="@+id/botonGuardar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
         android:background="@null"
         android:contentDescription="@android:string/ok"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -115,22 +112,22 @@
         android:id="@+id/botonCerrar"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:background="@null"
         android:contentDescription="@android:string/no"
         android:src="@drawable/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botonGuardar"
-        app:layout_constraintHorizontal_bias="0.152"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextDireccionContacto"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDireccionContacto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +135,7 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <EditText
-        android:id="@+id/editTextTextNumeroTlf"
+        android:id="@+id/editTextNumeroTlf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -146,7 +143,31 @@
         android:hint="Número"
         android:inputType="phone"
         android:minHeight="48dp"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNombreContacto" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreContacto" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="40dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDireccionContacto"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextEmailContacto"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDireccionContacto"
+        app:srcCompat="@android:drawable/sym_action_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

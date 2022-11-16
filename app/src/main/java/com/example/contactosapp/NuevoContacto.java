@@ -25,10 +25,10 @@ public class NuevoContacto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_contacto);
 
-        editTextNombre = (EditText) findViewById(R.id.editTextTextNombreContacto);
-        editTextTlf = (EditText) findViewById(R.id.editTextTextNumeroTlf);
-        editTextDireccion = (EditText) findViewById(R.id.editTextTextDireccionContacto);
-        editTextEmail = (EditText) findViewById(R.id.editTextTextEmailContacto);
+        editTextNombre = (EditText) findViewById(R.id.editTextNombreContacto);
+        editTextTlf = (EditText) findViewById(R.id.editTextNumeroTlf);
+        editTextDireccion = (EditText) findViewById(R.id.editTextDireccionContacto);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmailContacto);
 
         botonGuardar = (ImageButton) findViewById(R.id.botonGuardar);
         botonGuardar.setOnClickListener(view -> {guardarContacto();});
